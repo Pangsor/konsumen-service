@@ -57,7 +57,20 @@ public class KonsumenServiceImpl implements KonsumenService {
 
     @Override
     public KonsumenDto updateKonsumen(KonsumenDto konsumenDto) {
-        return null;
+        Konsumen existingKonsumen = konsumenRepository.findById(konsumenDto.getId()).orElseThrow(
+                () -> new ResourceNotFoundException("Konsumen","id",konsumenDto.getId())
+        );
+        if(!konsumenDto.getStatus().equalsIgnoreCase("actif") &&
+                !konsumenDto.getStatus().equalsIgnoreCase("non-actif")){
+            throw new BadRequestConsumerException("BAD_REQUEST_STATUS");
+        }
+        existingKonsumen.setNama(konsumenDto.getNama());
+        existingKonsumen.setAlamat(konsumenDto.getAlamat());
+        existingKonsumen.setKota(konsumenDto.getKota());
+        existingKonsumen.setProvinsi(konsumenDto.getProvinsi());
+        existingKonsumen.setStatus(konsumenDto.getStatus());
+        Konsumen updatedKonsumen = konsumenRepository.save(existingKonsumen);
+        return modelMapper.map(updatedKonsumen,KonsumenDto.class);
     }
 
     @Override

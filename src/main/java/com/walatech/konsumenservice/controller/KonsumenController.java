@@ -35,17 +35,17 @@ public class KonsumenController {
         return new ResponseEntity<>(konsumenList, HttpStatus.OK);
     }
 
-//    @PutMapping("{id}")
-//    public ResponseEntity<ContactDto> updateContact(@PathVariable("id") Long contactId,
-//                                                    @Valid @RequestBody ContactDto contact){
-//        contact.setId(contactId);
-//        ContactDto updatedMovie = contactService.updateContact(contact);
-//        return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
-//    }
+    @PutMapping("{id}")
+    public ResponseEntity<KonsumenDto> updateKonsumen(@PathVariable("id") int konsumenId,
+                                                    @Valid @RequestBody KonsumenDto konsumenDto){
+        konsumenDto.setId(konsumenId);
+        KonsumenDto updatedKonsumen = konsumenService.updateKonsumen(konsumenDto);
+        return new ResponseEntity<>(updatedKonsumen, HttpStatus.OK);
+    }
 //
 //    @DeleteMapping("{id}")
-//    public ResponseEntity<String> deleteContact(@PathVariable("id") Long contactId){
-//        contactService.deleteContact(contactId);
-//        return new ResponseEntity<>("Phone successfully deleted",HttpStatus.OK);
+//    public ResponseEntity<String> deleteKonsumen(@PathVariable("id") int konsumenId){
+//        konsumenService.deleteContact(konsumenId);
+//        return new ResponseEntity<>("Konsumen successfully deleted",HttpStatus.OK);
 //    }
 }
