@@ -19,8 +19,8 @@ public class KonsumenController {
 
     @PostMapping
     public ResponseEntity<KonsumenDto> createKonsumen(@Valid @RequestBody KonsumenDto konsumenDto){
-        KonsumenDto savedMovie = konsumenService.createKonsumen(konsumenDto);
-        return new ResponseEntity<>(savedMovie, HttpStatus.CREATED);
+        KonsumenDto savedKonsumen = konsumenService.createKonsumen(konsumenDto);
+        return new ResponseEntity<>(savedKonsumen, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
@@ -42,10 +42,10 @@ public class KonsumenController {
         KonsumenDto updatedKonsumen = konsumenService.updateKonsumen(konsumenDto);
         return new ResponseEntity<>(updatedKonsumen, HttpStatus.OK);
     }
-//
-//    @DeleteMapping("{id}")
-//    public ResponseEntity<String> deleteKonsumen(@PathVariable("id") int konsumenId){
-//        konsumenService.deleteContact(konsumenId);
-//        return new ResponseEntity<>("Konsumen successfully deleted",HttpStatus.OK);
-//    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteKonsumen(@PathVariable("id") int konsumenId){
+        konsumenService.deleteKonsumen(konsumenId);
+        return new ResponseEntity<>("Konsumen successfully deleted",HttpStatus.OK);
+    }
 }

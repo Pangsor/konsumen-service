@@ -75,6 +75,9 @@ public class KonsumenServiceImpl implements KonsumenService {
 
     @Override
     public void deleteKonsumen(int konsumenId) {
-
+        konsumenRepository.findById(konsumenId).orElseThrow(
+                () -> new ResourceNotFoundException("Konsumen","id",konsumenId)
+        );
+        konsumenRepository.deleteById(konsumenId);
     }
 }
